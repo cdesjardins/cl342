@@ -542,12 +542,39 @@ static int createSessionOpenRequest( INOUT SESSION_INFO *sessionInfoPtr,
 								  SSH_MSG_CHANNEL_REQUEST );
 	if( cryptStatusError( status ) )
 		return( status );
+
 	writeUint32( stream, channelNo );
 	writeString32( stream, "pty-req", 7 );
 	sputc( stream, 0 );					/* No reply */
-	writeString32( stream, "xterm", 5 );/* Generic */
-	writeUint32( stream, 80 );
-	writeUint32( stream, 48 );			/* 48 x 80 (24 x 80 is so 1970s) */
+    {
+        const ATTRIBUTE_LIST *termTypePtr = \
+                findSessionInfo( sessionInfoPtr->attributeList,
+                                 CRYPT_SESSINFO_TERM_TYPE );
+        if ( termTypePtr )
+            writeString32( stream,  termTypePtr->value, 
+                termTypePtr->valueLength );/* User specified */
+        else
+            writeString32( stream, "xterm", 5 );/* Generic */
+    }
+    {
+        const ATTRIBUTE_LIST *termWidthPtr = \
+				findSessionInfo( sessionInfoPtr->attributeList,
+								 CRYPT_SESSINFO_TERM_WIDTH );
+        if ( termWidthPtr )
+            writeUint32( stream, termWidthPtr->intValue );
+        else
+            writeUint32( stream, 80 );
+    }
+    {
+        const ATTRIBUTE_LIST *termHeightPtr = \
+				findSessionInfo( sessionInfoPtr->attributeList,
+								 CRYPT_SESSINFO_TERM_HEIGHT );
+        if ( termHeightPtr )
+            /* User defined is so 21st century */
+	        writeUint32( stream, termHeightPtr->intValue );
+        else
+	        writeUint32( stream, 48 );			/* 48 x 80 (24 x 80 is so 1970s) */
+    }
 	writeUint32( stream, 0 );
 	writeUint32( stream, 0 );			/* No graphics capabilities */
 	status = writeUint32( stream, 0 );	/* No special TTY modes */

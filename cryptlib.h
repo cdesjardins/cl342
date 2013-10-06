@@ -1235,6 +1235,11 @@ typedef enum {
 	CRYPT_SESSINFO_SSL_OPTIONS,		/* SSL/TLS protocol options */
 	CRYPT_SESSINFO_TSP_MSGIMPRINT,	/* TSP message imprint */
 
+    /* Terminal settings */
+    CRYPT_SESSINFO_TERM_TYPE,
+    CRYPT_SESSINFO_TERM_WIDTH,
+    CRYPT_SESSINFO_TERM_HEIGHT,
+
 	/* Used internally */
 	CRYPT_SESSINFO_LAST, CRYPT_USERINFO_FIRST = 7000,
 

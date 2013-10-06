@@ -732,6 +732,10 @@ int setSessionAttribute( INOUT SESSION_INFO *sessionInfoPtr,
 
 			return( CRYPT_OK );
 			}
+        case CRYPT_SESSINFO_TERM_WIDTH:
+        case CRYPT_SESSINFO_TERM_HEIGHT:
+			return( addSessionInfo( &sessionInfoPtr->attributeList,
+									 attribute, value ) );
 		}
 
 	retIntError();
@@ -870,6 +874,9 @@ int setSessionAttributeS( INOUT SESSION_INFO *sessionInfoPtr,
 
 		case CRYPT_SESSINFO_SERVER_NAME:
 			return( addUrl( sessionInfoPtr, data, dataLength ) );
+        case CRYPT_SESSINFO_TERM_TYPE:
+			return( addSessionInfoS( &sessionInfoPtr->attributeList,
+									 attribute, data, dataLength ) );
 		}
 
 	retIntError();

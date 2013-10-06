@@ -3712,8 +3712,25 @@ static const ATTRIBUTE_ACL FAR_BSS sessionACL[] = {
 		ST_NONE, ST_NONE, ST_SESS_TSP, 
 		MKPERM_TSP( xWD_xWD ),
 		ROUTE( OBJECT_TYPE_SESSION ), &objectCtxHash ),
-
-	MKACL_END(), MKACL_END()
+	MKACL_S(	/* Term Type */
+		CRYPT_SESSINFO_TERM_TYPE,
+		ST_NONE, ST_NONE, ST_SESS_ANY, 
+		MKPERM_SESSIONS( Rxx_RWD ),
+		ROUTE( OBJECT_TYPE_SESSION ),
+		RANGE( 2, MAX_URL_SIZE ) ),
+	MKACL_N(	/* Term Width */
+		CRYPT_SESSINFO_TERM_WIDTH,
+		ST_NONE, ST_NONE, ST_SESS_ANY, 
+		MKPERM_SESSIONS( Rxx_RWD ),
+		ROUTE( OBJECT_TYPE_SESSION ),
+		RANGE( 2, MAX_URL_SIZE ) ),
+	MKACL_N(	/* Term Height */
+		CRYPT_SESSINFO_TERM_HEIGHT,
+		ST_NONE, ST_NONE, ST_SESS_ANY, 
+		MKPERM_SESSIONS( Rxx_RWD ),
+		ROUTE( OBJECT_TYPE_SESSION ),
+		RANGE( 2, MAX_URL_SIZE ) ),
+    MKACL_END(), MKACL_END()
 	};
 
 /****************************************************************************
