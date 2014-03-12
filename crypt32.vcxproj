@@ -71,7 +71,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>.\binaries32_vs10\</OutDir>
+    <OutDir>.\debug</OutDir>
     <IntDir>.\debug32_vs10\</IntDir>
     <TargetName>cl32</TargetName>
   </PropertyGroup>
@@ -84,7 +84,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>.\binaries32_vs10\</OutDir>
+    <OutDir>.\release</OutDir>
     <IntDir>.\release32_vs10\</IntDir>
     <TargetName>cl32</TargetName>
   </PropertyGroup>
