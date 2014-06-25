@@ -381,7 +381,7 @@
    indirectly as a result of any use of cryptlib with this change made.  If
    you receive the code with the safety features already disabled, you must
    obtain an original, unmodified version */
-/* #define USE_PKCS12 */
+#define USE_PKCS12
 #ifdef USE_PKCS12
   /* If we use PKCS #12 then we have to enable RC2 in order to handle 
 	 Microsoft's continuing use of RC2-40 */

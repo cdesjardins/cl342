@@ -146,7 +146,7 @@ void vc6assert( const char *exprString, const char *fileName,
    since we sometimes need to output pre-formatted strings (which may 
    contain '%' signs interpreted by printf()) we also provide an alternative 
    that just outputs a fixed text string */
-
+#if 0
 #if defined( NDEBUG ) && !defined( DEBUG_DIAGNOSTIC_ENABLE )
   #define DEBUG_PRINT( x )
   #define DEBUG_OUT( string )
@@ -173,7 +173,11 @@ void vc6assert( const char *exprString, const char *fileName,
   #define DEBUG_PRINT( x )		printf x
   #define DEBUG_OUT( string )	printf( "%s", string )
 #endif /* OS-specific diagnostic functions */
+#else
+  #define DEBUG_PRINT( x )
+  #define DEBUG_OUT( string )
 
+#endif
 /* Output an I-am-here to the debugging outout (see above), useful when 
    tracing errors in code without debug symbols available */
 
