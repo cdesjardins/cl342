@@ -21,3 +21,7 @@ testfunc.o
 testlib.o
 tools/endian
 utils.o
+debug
+debug32_vs10
+release
+release32_vs10
